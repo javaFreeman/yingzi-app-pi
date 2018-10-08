@@ -1,0 +1,29 @@
+server:
+  port: 18082
+api:
+  url:
+    prefix: /api
+#必须加上这句active，不然yml文件不会被加载
+spring:
+  profiles:
+    active: dev
+  hsf:
+    pi:
+      version: 1.0.0
+      timeout: 3000
+      serviceGroup: yingzi-dev
+    location:
+      version: 0.1.0
+      timeout: 3000
+      serviceGroup: yingzi-dev
+  application:
+    name: pi-consumer
+swagger:
+  api:
+    version: 1.0.0
+    open: open
+logging:
+  level:
+    root: info
+
+interceptor: interceptor
