@@ -10,10 +10,12 @@ import com.yingzi.pi.app.resp.ResultBuilder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -24,7 +26,7 @@ import java.util.List;
  **/
 @RequestMapping("/api/job")
 @Api(tags = "员工工作信息API(BigBao)")
-@RestController
+@Controller
 public class JobMessageController {
     private static final Logger logger = YZLogManager.getLogger(PersonInformationController.class);
 
@@ -56,14 +58,23 @@ public class JobMessageController {
     }
 
     @ApiOperation(value = "获取员工工作信息列表")
-    @GetMapping("/list")
-    public RestResponse getJob(@ApiParam(value = "工号",required = true) @RequestParam Integer jobNumber){
+    @GetMapping("/list/{jobNumber}")
+    public String getJob(@ApiParam(value = "工号",required = true) HashMap<String, Object> map, @PathVariable Integer jobNumber){
         try {
             List<JobMessageVo> jobMessageVos = jobMessageService.getJob(jobNumber);
-            return ResultBuilder.success(jobMessageVos);
+            if (jobMessageVos != null){
+                for (int i =0;i<jobMessageVos.size();i++){
+                JobMessageVo messageVo =jobMessageVos.get(i);
+                String pst = messageVo.getPost();
+                map.put("hello", messageVo);
+                return "/index";
+                }
+            }
+            return "redirect:/error.html";
+            //return ResultBuilder.success(jobMessageVos);
         } catch (Exception e){
             logger.error("获取员工工作信息失败",e);
-            return ResultBuilder.error(ExceptionEnum.ERROR);
+            return "redirect:/error.html";
         }
     }
 }

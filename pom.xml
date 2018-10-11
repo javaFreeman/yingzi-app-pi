@@ -152,6 +152,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>com.yingzi</groupId>
+            <artifactId>yingzi-lib-config</artifactId>
+            <version>0.1.0-ALPHA</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

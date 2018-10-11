@@ -1,0 +1,11 @@
+{
+  "validationQuery": "SELECT 0 ",
+  "driverClassName": "com.mysql.jdbc.Driver",
+  "jdbcUrl": "jdbc:mysql://172.19.100.30:3306/test_temp?useUnicode=true&characterEncoding=UTF-8",
+  "jdbcUserName": "root",
+  "jdbcUserPassword": "123456",
+  "initialSize": "5",
+  "maxActive": "10",
+  "minIdle": "0",
+  "maxWait": "60000"
+}
