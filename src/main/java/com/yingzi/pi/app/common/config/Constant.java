@@ -17,12 +17,15 @@ public class Constant {
     static Config config;
     static {
         try {
-            config = new Configurator().readJson("");
+            Configurator configurator = new Configurator();
+            config = configurator.readYaml("application");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    final static String timeout = config.getString("timeout");
+    String version = config.getChild("spring").getChild("hsf").getChild("pi").getString("version");
+    String serviceGroup = config.getChild("spring").getChild("hsf").getChild("pi").getString("serviceGroup");
+    //final static String timeout = config.getString("timeout");
 
 }
