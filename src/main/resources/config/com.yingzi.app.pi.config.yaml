@@ -1,6 +1,6 @@
-yz:
-  alarm:
-    hsf:
-      version: 0.1.0
+spring:
+  hsf:
+    pi:
+      version: 1.0.0
       timeout: 3000
       serviceGroup: yingzi-dev

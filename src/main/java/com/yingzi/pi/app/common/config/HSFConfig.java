@@ -8,15 +8,14 @@ import javax.annotation.PostConstruct;
 import java.io.IOException;
 
 /**
- * @program: yingzi-center-alarm
- * @description:
- * @author: jianding
- * @create: 2018-09-26 16:12
+ * @program: yingzi-app-pi
+ * @description: 读取根目录下的yaml的HSF配置信息
+ * @author: BaoGuoQiang
+ * @create: 2018-10-18 09:19
  **/
-
 @Component
-public class AlarmConfig {
-    private static final String configDataId = "com.yingzi.center.alarm.config";
+public class HSFConfig {
+    private static final String configDataId = "com.yingzi.app.pi.config";
 
     private String serviceGroup;
     private String version;
@@ -24,11 +23,9 @@ public class AlarmConfig {
 
     @PostConstruct
     public void init() throws IOException {
-        //实例化配置器
         Configurator configurator = Configurator.getConfigurator();
-        //读取
         Config config = configurator.readYaml(configDataId);
-        config = config.getChild("yz").getChild("alarm").getChild("hsf");
+        config = config.getChild("spring").getChild("hsf").getChild("pi");
 
         this.serviceGroup = config.getString("serviceGroup");
         this.version = config.getString("version");

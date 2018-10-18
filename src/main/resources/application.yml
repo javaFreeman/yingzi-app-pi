@@ -7,15 +7,6 @@ api:
 spring:
   profiles:
     active: dev
-  hsf:
-    pi:
-      version: 1.0.0
-      timeout: 3000
-      serviceGroup: yingzi-dev
-    location:
-      version: 0.1.0
-      timeout: 3000
-      serviceGroup: yingzi-dev
   application:
     name: pi-consumer
 swagger:
